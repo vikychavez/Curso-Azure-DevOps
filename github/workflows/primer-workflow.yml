@@ -1,0 +1,40 @@
+name: Pipeline de ejemplo - Curso Azure DevOps
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Etapa de compilación
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mostrar mensajes de compilación
+        run: |
+          echo "Estoy compilando el código"
+          echo "Me llamo Pablo"
+          echo "Tengo 44 años"
+          echo "Compilación completa ✅"
+
+  test:
+    name: Etapa de pruebas
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Simular tests de unidad
+        run: |
+          echo "Ejecutando test de unidad..."
+          sleep 10
+          echo "Todos los tests pasaron exitosamente 🧪✅"
+
+  deploy:
+    name: Etapa de despliegue
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Simular despliegue
+        run: |
+          echo "Desplegando la aplicación al entorno de producción..."
+          sleep 5
+          echo "Despliegue finalizado 🚀"
